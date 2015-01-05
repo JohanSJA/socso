@@ -1,19 +1,14 @@
+// This is a library to help in the checking against the Rate of Contribution
+// table as published at
+// http://www.perkeso.gov.my/en/social-security-protection/employer-employee-eligibilty/rate-of-contributions.html .
 package socso
-
-/**
- * This is a library to help in the checking against the Rate of Contribution
- * table as published at
- * http://www.perkeso.gov.my/en/social-security-protection/employer-employee-eligibilty/rate-of-contributions.html .
- */
 
 import (
 	"errors"
 	"math"
 )
 
-/**
- * A RateEntry represents a row in the Rate of Contribution table.
- */
+// A RateEntry represents a row in the Rate of Contribution table.
 type RateEntry struct {
 	WagesFrom         float64
 	WagesTo           float64
@@ -22,10 +17,8 @@ type RateEntry struct {
 	Category2Employer float64
 }
 
-/**
- * Simple function adding up the employer and employee contribution for
- * category 1.
- */
+// Simple function adding up the employer and employee contribution for
+// category 1.
 func (r *RateEntry) Category1Total() float64 {
 	return r.Category1Employer + r.Category1Employee
 }
@@ -71,10 +64,8 @@ func init() {
 	}
 }
 
-/**
- * Return corresponding RateEntry instance if possible.
- * Wages is not supposed to be less than 0.
- */
+// Return corresponding RateEntry instance if possible.
+// Wages is not supposed to be less than 0.
 func Rate(wages float64) (error, RateEntry) {
 	if wages <= 0 {
 		return errors.New("Wages cannot be less than 0."), RateEntry{}
