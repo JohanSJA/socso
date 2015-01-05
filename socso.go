@@ -1,5 +1,11 @@
 package socso
 
+/**
+ * This is a library to help in the checking against the Rate of Contribution
+ * table as published at
+ * http://www.perkeso.gov.my/en/social-security-protection/employer-employee-eligibilty/rate-of-contributions.html .
+ */
+
 import (
 	"errors"
 	"math"
