@@ -19,12 +19,12 @@ func TestRateWagesLessThanZero(t *testing.T) {
 }
 
 func TestRateWagesNormal(t *testing.T) {
-	expected_re := RateEntry{1400.01, 1500.0, 25.35, 7.25, 18.1}
+	expectedRe := RateEntry{1400.01, 1500.0, 25.35, 7.25, 18.1}
 	re, err := Rate(1450.0)
 	if err != nil {
 		t.Fail()
 	}
-	if re != expected_re {
-		t.Errorf("%v !== %v", re, expected_re)
+	if re != expectedRe {
+		t.Errorf("%v !== %v", re, expectedRe)
 	}
 }
