@@ -1,5 +1,5 @@
-// This is a library to help in the checking against the Rate of Contribution
-// table as published at
+// Package socso is a library to help in the checking against the Rate of
+// Contribution table as published at
 // http://www.perkeso.gov.my/en/social-security-protection/employer-employee-eligibilty/rate-of-contributions.html .
 package socso
 
@@ -8,7 +8,7 @@ import (
 	"math"
 )
 
-// A RateEntry represents a row in the Rate of Contribution table.
+// RateEntry represents a row in the Rate of Contribution table.
 type RateEntry struct {
 	WagesFrom         float64
 	WagesTo           float64
@@ -17,16 +17,17 @@ type RateEntry struct {
 	Category2Employer float64
 }
 
-// Simple function adding up the employer and employee contribution for
+// Category1Total adds up the employer and employee contribution for
 // category 1.
 func (r *RateEntry) Category1Total() float64 {
 	return r.Category1Employer + r.Category1Employee
 }
 
-var RATES []RateEntry
+// Rates are all the availables rates.
+var Rates []RateEntry
 
 func init() {
-	RATES = []RateEntry{
+	Rates = []RateEntry{
 		{0.01, 30.0, 0.4, 0.1, 0.3},
 		{30.01, 50.0, 0.7, 0.2, 0.5},
 		{50.01, 70.0, 1.1, 0.3, 0.8},
@@ -64,13 +65,13 @@ func init() {
 	}
 }
 
-// Return corresponding RateEntry instance if possible.
+// Rate returns corresponding RateEntry instance if possible.
 // Wages is not supposed to be less than 0.
 func Rate(wages float64) (RateEntry, error) {
 	if wages <= 0 {
 		return RateEntry{}, errors.New("Wages cannot be less than 0.")
 	}
-	for _, entry := range RATES {
+	for _, entry := range Rates {
 		if wages > entry.WagesFrom && wages <= entry.WagesTo {
 			return entry, nil
 		}
