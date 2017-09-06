@@ -69,12 +69,12 @@ func init() {
 // Wages is not supposed to be less than 0.
 func Rate(wages float64) (RateEntry, error) {
 	if wages <= 0 {
-		return RateEntry{}, errors.New("Wages cannot be less than 0.")
+		return RateEntry{}, errors.New("wages cannot be less than 0")
 	}
 	for _, entry := range Rates {
 		if wages > entry.WagesFrom && wages <= entry.WagesTo {
 			return entry, nil
 		}
 	}
-	return RateEntry{}, errors.New("Unknown error.")
+	return RateEntry{}, errors.New("unknown error")
 }
